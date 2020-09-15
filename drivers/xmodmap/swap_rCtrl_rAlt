@@ -1,0 +1,7 @@
+remove mod1 = Alt_R
+remove control = Control_R
+keysym Alt_R = Control_R
+keysym Control_R = Alt_R
+add mod1 = Alt_R
+add control = Control_R
+

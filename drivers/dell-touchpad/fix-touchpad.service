@@ -1,0 +1,11 @@
+[Unit]
+Description=Touchpad workaround
+After=suspend.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/modprobe -rf i2c_hid ; /usr/sbin/modprobe i2c_hid
+
+[Install]
+WantedBy=suspend.target
+
