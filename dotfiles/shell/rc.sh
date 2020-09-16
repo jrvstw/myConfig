@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # personal customized command
+if ! [[ "${PATH}" =~ "${HOME}/.local/bin:" ]]; then
+    PATH="${HOME}/.local/bin:${PATH}"
+fi
 if ! [[ "${PATH}" =~ "${HOME}/.local/scripts:" ]]; then
     PATH="${HOME}/.local/scripts:${PATH}"
 fi

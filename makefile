@@ -13,13 +13,13 @@ list:
 	# 	touchpad-fix
 	# 	sshd snap bash nord-terminal
 	# 	trash ranger fzf ripgrep ctags git tig
-	# 	vim neovim
+	# 	vim neovim vim-plugin
 	# 	cpp julia
 	# 	telegram-cli
 
 .PHONY: tester
 tester:
-	echo ${thisDir}
+	echo ${scripts}
 
 # app level
 
@@ -43,6 +43,7 @@ bash:
 	${scripts}/source.sh ${dotfiles}/bash/bash_profile.sh ${HOME}/.bash_profile
 	${scripts}/source.sh ${dotfiles}/bash/bashrc.sh ${HOME}/.bashrc
 	${scripts}/source.sh ${dotfiles}/shell/rc.sh ${HOME}/.bashrc
+	${scripts}/slink.sh ${scripts} ${HOME}/.local/scripts
 
 .PHONY: nord-terminal
 nord-terminal:
@@ -87,7 +88,6 @@ vim:
 	type vim || ${install} vim
 	${scripts}/source.sh ${dotfiles}/vim/rc.vim ${HOME}/.vimrc
 	${scripts}/slink.sh ${dotfiles}/vim ${HOME}/.vim
-	export EDITOR="vim"
 
 .PHONY: neovim
 neovim:
@@ -95,7 +95,7 @@ neovim:
 	test -d ${HOME}/.config/nvim || mkdir -p ${HOME}/.config/nvim
 	${scripts}/source.sh ${dotfiles}/vim/rc.vim ${HOME}/.config/nvim/init.vim
 	${scripts}/slink.sh ${dotfiles}/vim ${HOME}/.vim
-	export EDITOR="nvim"
+	export VISUAL="nvim"
 
 .PHONY: vim-plugin
 vim-plugin: ctags ranger fzf ripgrep
