@@ -1,6 +1,6 @@
 " Bclose {{{
 if exists('g:loaded_bclose')
-    nnoremap qf :Bclose<cr>
+    nnoremap qf :<c-u>Bclose<cr>
 endif
 " }}}
 
@@ -17,7 +17,7 @@ endif
 
 " Startify {{{
 if exists('g:startify_locked')
-    noremap mfs <esc>:Startify<cr>
+    noremap mfs :<c-u>Startify<cr>
 endif
 " }}}
 
@@ -28,30 +28,30 @@ if exists('g:tagbar_width')
    "let g:tagbar_autofocus=1
    "let g:tagbar_autoclose=1
     let g:tagbar_sort = 0
-    noremap td <esc>:TagbarToggle<CR>
-    noremap md <esc>:TagbarOpenAutoClose<cr>
+    noremap td :<c-u>TagbarToggle<CR>
+    noremap md :<c-u>TagbarOpenAutoClose<cr>
 endif
 " }}}
 
 " FZF {{{
 if exists('g:loaded_fzf')
-    nnoremap mb         :Marks<cr>
-    nnoremap mw         :Windows<cr>
-    nnoremap msc        :BLines<cr>
-    nnoremap mso        :Lines<cr>
-    nnoremap msd        :Rg<cr>
-    nnoremap msh        :History/<cr>
-    nnoremap mSc        :BLines <c-r><c-w><cr>
-    nnoremap mSo        :Lines '<c-r><c-w><cr>
-    nnoremap mSd        :Rg <c-r><c-w><cr>
-    nnoremap mfo        :Buffers<cr>
-    nnoremap m<space>   :Buffers<cr>
-    nnoremap mfd        :Files<cr>
-    nnoremap mfh        :History<cr>
-    nnoremap gc         :Commands<cr>
-    nnoremap gh         :Helptags<cr>
-    nnoremap g:         :History:<cr>
-    nnoremap g/         :History/<cr>
+    nnoremap mb         :<c-u>Marks<cr>
+    nnoremap mw         :<c-u>Windows<cr>
+    nnoremap msc        :<c-u>BLines<cr>
+    nnoremap mso        :<c-u>Lines<cr>
+    nnoremap msd        :<c-u>Rg<cr>
+    nnoremap msh        :<c-u>History/<cr>
+    nnoremap mSc        :<c-u>BLines <c-r><c-w><cr>
+    nnoremap mSo        :<c-u>Lines '<c-r><c-w><cr>
+    nnoremap mSd        :<c-u>Rg <c-r><c-w><cr>
+    nnoremap mfo        :<c-u>Buffers<cr>
+    nnoremap m<space>   :<c-u>Buffers<cr>
+    nnoremap mfd        :<c-u>Files<cr>
+    nnoremap mfh        :<c-u>History<cr>
+    nnoremap gc         :<c-u>Commands<cr>
+    nnoremap gh         :<c-u>Helptags<cr>
+    nnoremap g:         :<c-u>History:<cr>
+    nnoremap g/         :<c-u>History/<cr>
 
     if has('nvim')
         "let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
@@ -110,7 +110,7 @@ endif
 
 " GitGutter {{{
 if exists("g:loaded_gitgutter")
-    nmap gg <Plug>(GitGutterPreviewHunk)
+    nmap gg <esc><Plug>(GitGutterPreviewHunk)
 endif
 " }}}
 
@@ -124,14 +124,14 @@ endif
 " Ranger {{{
 if &rtp =~ 'ranger.vim'
     let g:ranger_mak_keys = 0
-    noremap mr  <esc>:RangerWorkingDirectory<cr>
-    noremap mR  <esc>:RangerCurrentFile<cr>
+    noremap mr  :<c-u>RangerWorkingDirectory<cr>
+    noremap mR  :<c-u>RangerCurrentFile<cr>
 endif
 " }}}
 
 " IndentLine {{{
 let g:indentLine_enabled = 0
-noremap ti <esc>:IndentLinesToggle<cr>
+noremap ti :<c-u>IndentLinesToggle<cr>
 " }}}
 
 " --------------------------------
