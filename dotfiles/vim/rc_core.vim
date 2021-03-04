@@ -164,10 +164,10 @@ set nocompatible
 
 
     "" mode
-        nnoremap i i_<bs>
-        nnoremap o a_<bs>
-        nnoremap I I_<bs>
-        nnoremap O A_<bs>
+        nnoremap i i
+        nnoremap o a
+        nnoremap I I
+        nnoremap O A
         nnoremap fi O
         nnoremap fo o
        "nnoremap c c
@@ -179,27 +179,34 @@ set nocompatible
        "noremap v v
        "noremap V V
         noremap fv <c-v>
-        nnoremap R gR_<bs>
+        nnoremap R gR
        "noremap : :
 
         inoremap <s-tab> <cr>
         inoremap <cr> <esc>`^
-        inoremap <esc> <esc>u
+        inoremap <esc> <esc>`^
 
 
     "" move cursor
         "" by column
            "noremap h h
            "noremap l l
+            noremap mc \|
             noremap fh ^
             noremap fl $
-            noremap mc \|
 
         "" by line
-            noremap     k   gk
-            noremap     j   gj
-            noremap     ml  gg
-            noremap     mL  G
+            noremap k   gk
+            noremap j   gj
+            noremap ml  gg
+            noremap mL  G
+            map     fk  <Plug>IndentMotionTop
+            map     fj  <Plug>IndentMotionBottom
+            map     K   <Plug>IndentMotionUp
+            map     J   <Plug>IndentMotionDown
+            map     H   <Plug>IndentMotionLeft
+           "map     L   <Plug>IndentMotionRight
+            let g:IndentMotion_load_keys = 0
 
         "" by word
             noremap W b
@@ -220,36 +227,26 @@ set nocompatible
             noremap b }
 
         "" by syntax
-            let g:IndentMotion_load_keys = 0
-            map  mp %
-            map  FH <Plug>IndentMotionLeft
-           "map  FL <Plug>IndentMotionRight
-            map  FK <Plug>IndentMotionUp
-            map  FJ <Plug>IndentMotionDown
-            map  fk <Plug>IndentMotionTop
-            map  fj <Plug>IndentMotionBottom
-            vmap ii <Plug>IndentMotionInner
-            vmap oi <Plug>IndentMotionAll
-            omap ii <Plug>IndentMotionInner
-            omap oi <Plug>IndentMotionAll
+            map  ma %
 
-        "" by history
+        "" among history
             nnoremap M <c-o>
             nnoremap mm <c-i>
+            nnoremap fm ``
 
-        "" by quickfix
+        "" among quickfix list
             nnoremap mQ :<c-u>cp<cr>
             nnoremap mq :<c-u>cn<cr>
 
         "" to character
-            noremap f, F
-            noremap ,  T
-            noremap .  t
-            noremap f. f
+            noremap ,  F
+            noremap <  T
+            noremap >  t
+            noremap .  f
             noremap FN ,
             noremap fn ;
-           "map f/ <Plug>(easymotion-bd-f)
-           "nmap f/ <Plug>(easymotion-overwin-f)
+           "map     f, <Plug>(easymotion-bd-f)
+           "nmap    f, <Plug>(easymotion-overwin-f)
 
         "" to string
             nnoremap ? #*:<c-u>set hlsearch<cr>
@@ -272,12 +269,18 @@ set nocompatible
 
         "" to file
            "nnoremap mfo :<c-u>Buffers<cr>
-           "nnoremap m<space> :<c-u>Buffers<cr>
+            nnoremap mfp :<c-u>bp<cr>
            "nnoremap mfd :<c-u>Files<cr>
            "nnoremap mfh :<c-u>History<cr>
             nnoremap mF gf
+            nnoremap m, :<c-u>e $MYVIMRC<cr>
 
-        "" to file manager
+        "" to external program
+            if has('nvim')
+                nnoremap m. :<c-u>e term://$SHELL<cr>
+                nnoremap mp :<c-u>e term://python<cr>
+                nnoremap mj :<c-u>e term://julia<cr>
+            endif
            "nnoremap mr :<c-u>RangerWorkingDirectory<cr>
            "nnoremap mR :<c-u>RangerCurrentFile<cr>
 
@@ -286,91 +289,10 @@ set nocompatible
             noremap sb m
            "nnoremap mb :<c-u>Marks<cr>
 
-        "" switch to another window
-            nnoremap K <c-w>k
-            nnoremap J <c-w>j
-            nnoremap H <c-w>h
-            nnoremap L <c-w>l
-            nnoremap < gT
-            nnoremap > gt
-           "nnoremap mw :<c-u>Windows<cr>
-            nnoremap mW <c-w>p
-
         nnoremap mi `^
         vnoremap mo o
-        nnoremap mt <c-]>
+        nnoremap mT <c-]>
         nnoremap mv gv
-
-
-    "" visual select
-       "vnoremap iw iw
-        vnoremap ifw iW
-        vnoremap ifb is
-       "vnoremap ip ip
-        vnoremap ib ip
-       "vnoremap it it
-       "vnoremap i( i(
-       "vnoremap i) i)
-       "vnoremap i[ i[
-       "vnoremap i] i]
-       "vnoremap i{ i{
-       "vnoremap i} i}
-       "vnoremap i< i<
-       "vnoremap i> i>
-       "vnoremap i' i'
-       "vnoremap i" i"
-        vnoremap ow aw
-        vnoremap ofw aW
-        vnoremap ofb as
-        vnoremap op ap
-        vnoremap ob ap
-        vmap     ot at
-        vnoremap o( a(
-        vnoremap o) a)
-        vnoremap o[ a[
-        vnoremap o] a]
-        vnoremap o{ a{
-        vnoremap o} a}
-        vnoremap o< a<
-        vnoremap o> a>
-        vnoremap o' a'
-        vnoremap o" a"
-
-       "onoremap iw iw
-        onoremap ifw iW
-        onoremap ifb is
-       "onoremap ip ip
-        onoremap ib ip
-       "onoremap it it
-       "onoremap i( i(
-       "onoremap i) i)
-       "onoremap i[ i[
-       "onoremap i] i]
-       "onoremap i{ i{
-       "onoremap i} i}
-       "onoremap i< i<
-       "onoremap i> i>
-       "onoremap i' i'
-       "onoremap i" i"
-        onoremap ow aw
-        onoremap ofw aW
-        onoremap ofb as
-        onoremap op ap
-        onoremap ob ap
-        omap     ot at
-        onoremap o( a(
-        onoremap o) a)
-        onoremap o[ a[
-        onoremap o] a]
-        onoremap o{ a{
-        onoremap o} a}
-        onoremap o< a<
-        onoremap o> a>
-        onoremap o' a'
-        onoremap o" a"
-
-       "vnoremap I I
-        vnoremap O A
 
 
     "" edit
@@ -417,15 +339,15 @@ set nocompatible
            "nnoremap ds ds
            "vnoremap S  S
 
-        "" indent
+        "" indentation
            "inoremap <c-d> <c-d>
            "inoremap <c-t> <c-t>
-            nnoremap x, <<
-            nnoremap x. >>
-            nnoremap x/ ==
-            vnoremap x, <
-            vnoremap x. >
-            vnoremap x/ =
+            nnoremap x< <<
+            nnoremap x> >>
+            nnoremap x= ==
+            vnoremap x< <gv
+            vnoremap x> >gv
+            vnoremap x= =gv
 
         "" case
             nnoremap xc ~
@@ -436,10 +358,10 @@ set nocompatible
             nnoremap xl u
 
         "" value
-            nnoremap xp <c-a>
-            vnoremap xp <c-a>
-            nnoremap xm <c-x>
-            vnoremap xm <c-x>
+            nnoremap x+ <c-a>
+            vnoremap x+ <c-a>
+            nnoremap x- <c-x>
+            vnoremap x- <c-x>
 
         nnoremap xj J
         vnoremap xj J
@@ -450,26 +372,90 @@ set nocompatible
        "inoremap <c-r> <c-r>
 
 
-    "" view
-        noremap <c-k> <c-e>
-        noremap <c-j> <c-y>
-        noremap <c-o> <c-d>
-       "noremap <c-u> <c-u>
-        noremap <c-r> zz
-        noremap <c-h> 2zl
-        noremap <c-l> 2zh
+    "" visual select
+       "vnoremap iw iw
+        vnoremap ifw iW
+        vnoremap ifb is
+       "vnoremap ip ip
+        vnoremap ib ip
+       "vnoremap it it
+       "vnoremap i( i(
+       "vnoremap i) i)
+       "vnoremap i[ i[
+       "vnoremap i] i]
+       "vnoremap i{ i{
+       "vnoremap i} i}
+       "vnoremap i< i<
+       "vnoremap i> i>
+       "vnoremap i' i'
+       "vnoremap i" i"
+        vnoremap ow aw
+        vnoremap ofw aW
+        vnoremap ofb as
+        vnoremap op ap
+        vnoremap ob ap
+        vmap     ot at
+        vnoremap o( a(
+        vnoremap o) a)
+        vnoremap o[ a[
+        vnoremap o] a]
+        vnoremap o{ a{
+        vnoremap o} a}
+        vnoremap o< a<
+        vnoremap o> a>
+        vnoremap o' a'
+        vnoremap o" a"
+        vmap     ii <Plug>IndentMotionInner
+        vmap     oi <Plug>IndentMotionAll
 
-        "" visual elements
-            nnoremap tc  :<c-u>let &scrolloff=999-&scrolloff<cr>
-           "nnoremap td  :<c-u>TagbarToggle<CR>
-            nnoremap thc :<c-u>set cursorcolumn!<cr>
-            nnoremap ths :<c-u>set hlsearch!<cr>
-            nnoremap thu #*:<c-u>set hlsearch<cr>
-           "nnoremap ti  :<c-u>IndentLinesToggle<cr>
-            nnoremap tr  :<c-u>set rnu!<cr>
-            nnoremap tw  :<c-u>set wrap!<cr>
-            nnoremap t/  :<c-u>set hlsearch!<cr>
-            nnoremap t\  :<c-u>set list!<cr>
+       "onoremap iw iw
+        onoremap ifw iW
+        onoremap ifb is
+       "onoremap ip ip
+        onoremap ib ip
+       "onoremap it it
+       "onoremap i( i(
+       "onoremap i) i)
+       "onoremap i[ i[
+       "onoremap i] i]
+       "onoremap i{ i{
+       "onoremap i} i}
+       "onoremap i< i<
+       "onoremap i> i>
+       "onoremap i' i'
+       "onoremap i" i"
+        onoremap ow aw
+        onoremap ofw aW
+        onoremap ofb as
+        onoremap op ap
+        onoremap ob ap
+        omap     ot at
+        onoremap o( a(
+        onoremap o) a)
+        onoremap o[ a[
+        onoremap o] a]
+        onoremap o{ a{
+        onoremap o} a}
+        onoremap o< a<
+        onoremap o> a>
+        onoremap o' a'
+        onoremap o" a"
+        omap     ii <Plug>IndentMotionInner
+        omap     oi <Plug>IndentMotionAll
+
+       "vnoremap I I
+        vnoremap O A
+
+
+    "" view
+        "" scroll
+            noremap <c-k> <c-e>
+            noremap <c-j> <c-y>
+            noremap <c-o> <c-d>
+           "noremap <c-u> <c-u>
+            noremap <c-r> zz
+            noremap <c-h> 2zl
+            noremap <c-l> 2zh
 
         "" folding
             nnoremap - zc
@@ -483,80 +469,97 @@ set nocompatible
 
 
     "" system
-        nnoremap sf  :<c-u>w<cr>
-        nnoremap sa  :<c-u>wa<cr>
-        nnoremap qf  :<c-u>bp\|bd #<cr>
-       "nnoremap qf  :<c-u>Bclose<cr>
-        nnoremap qa  :<c-u>qa<cr>
-       "nnoremap sqf :<c-u>wq<cr>
-       "nnoremap sqa :<c-u>wqa<cr>
-        nnoremap fqf :<c-u>bd!<cr>
+        "" buffers
+            nnoremap sf  :<c-u>w<cr>
+            nnoremap sa  :<c-u>wa<cr>
+            nnoremap qf  :<c-u>bp\|bd #<cr>
+           "nnoremap qf  :<c-u>Bclose<cr>
+            nnoremap qa  :<c-u>qa<cr>
+           "nnoremap sqf :<c-u>wq<cr>
+           "nnoremap sqa :<c-u>wqa<cr>
+            nnoremap fqf :<c-u>bd!<cr>
 
-        nnoremap ;n :<c-u>normal! 
+        "" go to another window
+            nnoremap gk <c-w>k
+            nnoremap gj <c-w>j
+            nnoremap gh <c-w>h
+            nnoremap gl <c-w>l
+            nnoremap gi gT
+            nnoremap go gt
+           "nnoremap gw :<c-u>Windows<cr>
+            nnoremap G  <c-w>p
+            nnoremap g<space>  :<c-u>Windows<cr>
 
-       "" windows / tabs
+        "" tweak windows / tabs
             nnoremap aw  <c-w>n
             nnoremap at  :<c-u>tabe<cr>
-            nnoremap faw <c-w>s
-            nnoremap fat <c-w>s<c-w>T
+            nnoremap aW  <c-w>s
+            nnoremap aT  <c-w>s<c-w>T
             nnoremap a,  :<c-u>tabe $MYVIMRC<cr>
             if has('nvim')
-                nnoremap a.  :<c-u>split term://$SHELL<cr>a
-                nnoremap ap  :<c-u>split \| terminal python<cr><c-w>p
-                vnoremap ap  :<c-u>split \| terminal python<cr><c-w>pgv
-                nnoremap aj  :<c-u>split \| terminal julia<cr><c-w>p
-                vnoremap aj  :<c-u>split \| terminal julia<cr><c-w>pgv
+                nnoremap a.  :<c-u>split term://$SHELL<cr>
+                nnoremap ap  :<c-u>split term://python<cr>
+                nnoremap aj  :<c-u>split term://julia<cr>
             else
-                nnoremap a.  :<c-u>terminal<cr>
-                nnoremap ap  :<c-u>terminal python<cr><c-\><c-n><c-w>p
-                vnoremap ap  :<c-u>terminal python<cr><c-\><c-n><c-w>pgv
-                nnoremap aj  :<c-u>terminal julia<cr><c-\><c-n><c-w>p
-                vnoremap aj  :<c-u>terminal julia<cr><c-\><c-n><c-w>pgv
+                nnoremap a.  :<c-u>terminal<cr><c-\><c-n>
+                nnoremap ap  :<c-u>terminal python<cr><c-\><c-n>
+                nnoremap aj  :<c-u>terminal julia<cr><c-\><c-n>
             endif
 
             nnoremap qw :<c-u>q<cr>
             nnoremap qt :<c-u>tabc<cr>
             nnoremap qo <c-w>o
 
-            nnoremap sw :<c-u>mksession!<cr>
-            nnoremap gw :<c-u>source Session.vim<cr>
+            nnoremap ss :<c-u>mksession!<cr>
+            nnoremap as :<c-u>source Session.vim<cr>
 
-            nnoremap spk <c-w>K
-            nnoremap spj <c-w>J
-            nnoremap sph <c-w>H
-            nnoremap spl <c-w>L
-            nnoremap spt <c-w>T
-            nnoremap sp, :<c-u>-tabm<cr>
-            nnoremap sp. :<c-u>+tabm<cr>
+            nnoremap tpk <c-w>K
+            nnoremap tpj <c-w>J
+            nnoremap tph <c-w>H
+            nnoremap tpl <c-w>L
+            nnoremap tpt <c-w>T
+            nnoremap tpi :<c-u>-tabm<cr>
+            nnoremap tpo :<c-u>+tabm<cr>
 
-            nnoremap ssk  <c-w>-
-            nnoremap ssj  <c-w>+
-            nnoremap ssfj <c-w>_
-            nnoremap ssh  <c-w><
-            nnoremap ssl  <c-w>>
-            nnoremap ssfl <c-w>\|
-            nnoremap sse  <c-w>=
+            nnoremap tsk  <c-w>-
+            nnoremap tsj  <c-w>+
+            nnoremap tsfj <c-w>_
+            nnoremap tsh  <c-w><
+            nnoremap tsl  <c-w>>
+            nnoremap tsfl <c-w>\|
+            nnoremap tse  <c-w>=
 
-        "" get info
-            nnoremap ga ga
-            nnoremap gb :<c-u>marks<cr>
-            nnoremap gc :<c-u>command<cr>
-           "nnoremap gc :<c-u>Commands<cr>
-            nnoremap gd :<c-u>pwd<cr>
-            nnoremap gf :<c-u>files<cr>
-           "nmap     gg <Plug>(GitGutterPreviewHunk)
-           "nnoremap gh :<c-u>Helptags<cr>
-            nnoremap gK K
-            nnoremap gm :<c-u>jumps<cr>
-            nnoremap gq :<c-u>cl<cr>
-            nnoremap gs :<c-u>echom synIDattr(synIDtrans(synID(a:line, a:col, 1)), "name")<cr>
-            nnoremap gu :<c-u>undol<cr>
-            nnoremap g: :<c-u>history:<cr>
-           "nnoremap g: :<c-u>History:<cr>
-            nnoremap g" :<c-u>reg<cr>
-            nnoremap g/ :<c-u>history/<cr>
-           "nnoremap g/ :<c-u>History/<cr>
+        "" toggle
+            nnoremap tc  :<c-u>set cursorcolumn!<cr>
+           "nnoremap td  :<c-u>TagbarToggle<CR>
+           "nnoremap ti  :<c-u>IndentLinesToggle<cr>
+            nnoremap tm  :<c-u>let &scrolloff=999-&scrolloff<cr>
+            nnoremap tr  :<c-u>set rnu!<cr>
+            nnoremap tw  :<c-u>set wrap!<cr>
+            nnoremap t/  :<c-u>set hlsearch!<cr>
+            nnoremap t\  :<c-u>set list!<cr>
 
+        "" show
+            nnoremap Sa ga
+            nnoremap Sb :<c-u>marks<cr>
+            nnoremap Sc :<c-u>command<cr>
+           "nnoremap Sc :<c-u>Commands<cr>
+            nnoremap Sd :<c-u>pwd<cr>
+            nnoremap Sf :<c-u>files<cr>
+           "nmap     Sg <Plug>(GitGutterPreviewHunk)
+           "nnoremap Sh :<c-u>Helptags<cr>
+            nnoremap SK K
+            nnoremap Sm :<c-u>jumps<cr>
+            nnoremap Sq :<c-u>cl<cr>
+            nnoremap Ss :<c-u>echom synIDattr(synIDtrans(synID(a:line, a:col, 1)), "name")<cr>
+            nnoremap Su :<c-u>undol<cr>
+            nnoremap S: :<c-u>history:<cr>
+           "nnoremap S: :<c-u>History:<cr>
+            nnoremap S" :<c-u>reg<cr>
+            nnoremap S/ :<c-u>history/<cr>
+           "nnoremap S/ :<c-u>History/<cr>
+
+        nnoremap ;n :<c-u>normal! 
 
 
     "" for navigation keys

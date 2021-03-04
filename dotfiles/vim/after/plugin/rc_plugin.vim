@@ -8,10 +8,10 @@ endif
 let g:EasyMotion_do_mapping = 0
 if exists('g:EasyMotion_loaded')
     let g:EasyMotion_smartcase = 1
-    map f/ <Plug>(easymotion-bd-f)
-    nmap f/ <Plug>(easymotion-overwin-f)
-    map / <Plug>(easymotion-sn)
-    omap / <Plug>(easymotion-tn)
+    map  f, <Plug>(easymotion-bd-f)
+    nmap f, <Plug>(easymotion-overwin-f)
+    map  /  <Plug>(easymotion-sn)
+    omap /  <Plug>(easymotion-tn)
 endif
 " }}}
 
@@ -36,7 +36,6 @@ endif
 " FZF {{{
 if exists('g:loaded_fzf')
     nnoremap mb         :<c-u>Marks<cr>
-    nnoremap mw         :<c-u>Windows<cr>
     nnoremap msc        :<c-u>BLines<cr>
     nnoremap mso        :<c-u>Lines<cr>
     nnoremap msd        :<c-u>Rg<cr>
@@ -45,13 +44,13 @@ if exists('g:loaded_fzf')
     nnoremap mSo        :<c-u>Lines '<c-r><c-w><cr>
     nnoremap mSd        :<c-u>Rg <c-r><c-w><cr>
     nnoremap mfo        :<c-u>Buffers<cr>
-    nnoremap m<space>   :<c-u>Buffers<cr>
     nnoremap mfd        :<c-u>Files<cr>
     nnoremap mfh        :<c-u>History<cr>
-    nnoremap gc         :<c-u>Commands<cr>
-    nnoremap gh         :<c-u>Helptags<cr>
-    nnoremap g:         :<c-u>History:<cr>
-    nnoremap g/         :<c-u>History/<cr>
+    nnoremap gw         :<c-u>Windows<cr>
+    nnoremap Sc         :<c-u>Commands<cr>
+    nnoremap Sh         :<c-u>Helptags<cr>
+    nnoremap S:         :<c-u>History:<cr>
+    nnoremap S/         :<c-u>History/<cr>
 
     if has('nvim')
         "let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
@@ -110,7 +109,7 @@ endif
 
 " GitGutter {{{
 if exists("g:loaded_gitgutter")
-    nmap gg <esc><Plug>(GitGutterPreviewHunk)
+    nmap Sg <esc><Plug>(GitGutterPreviewHunk)
 endif
 " }}}
 
