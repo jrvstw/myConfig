@@ -9,7 +9,7 @@ elif [[ "$@" == "home" ]]; then
     user=$(${get} serverUser)
     addr=$(${get} serverAddress)
     port=$(${get} serverSSHPort)
-    ${user}@${addr} -p${port}
+    ssh ${user}@${addr} -p${port}
 
 else
     echo 'connect.sh: missing operand'
