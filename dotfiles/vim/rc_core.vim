@@ -245,12 +245,12 @@ set nocompatible
             noremap .  f
             noremap FN ,
             noremap fn ;
-           "map     f, <Plug>(easymotion-bd-f)
-           "nmap    f, <Plug>(easymotion-overwin-f)
+           "map     f/ <Plug>(easymotion-bd-f)
+           "nmap    f/ <Plug>(easymotion-overwin-f)
 
         "" to string
-            nnoremap ? #*:<c-u>set hlsearch<cr>
            "noremap / /
+            nnoremap <expr> ? &hlsearch ? ':<c-u>set nohlsearch<cr>' : '#*:<c-u>set hlsearch<cr>'
            "map / <Plug>(easymotion-sn)
            "omap / <Plug>(easymotion-tn)
            "noremap N N
@@ -486,9 +486,8 @@ set nocompatible
             nnoremap gl <c-w>l
             nnoremap gi gT
             nnoremap go gt
-           "nnoremap gw :<c-u>Windows<cr>
+            nnoremap gw :<c-u>Windows<cr>
             nnoremap G  <c-w>p
-            nnoremap g<space>  :<c-u>Windows<cr>
 
         "" tweak windows / tabs
             nnoremap aw  <c-w>n

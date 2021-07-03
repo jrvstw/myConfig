@@ -18,6 +18,15 @@ alias ll="ls -l"
 move() { mv --backup=t $*; }
 copy() { cp --backup=t $*; }
 trash() { gio trash $*; }
+edit() {
+    if [[ ! -z "$@" ]]; then
+        ${VISUAL} "$@"
+    elif type fzf > /dev/null; then
+        tempfile="$(mktemp -t tmp.XXXXXX)"
+        fzf > "${tempfile}" && ${VISUAL} "$(cat -- ${tempfile})"
+    fi
+}
+
 go() {
     if type ranger > /dev/null; then
         tempfile="$(mktemp -t tmp.XXXXXX)"
@@ -74,11 +83,11 @@ getStatus()
    #width=80
     width=${COLUMNS}
     hostStr=" $(test $SSH_TTY && printf 'SSH:')${HOSTNAME%%.*}"
-    pathStr="${shLevel} at ${myPath}${gitBranch}"
+    pathStr="${shLevel} ${myPath}${gitBranch}"
     signalStr="${retVal}${jobStat}"
     timeStr="$(date +%T)"
 
-    diff="$(expr ${width} - length "${hostStr}${shLevel} at ${myPath}${gitBranch}${signalStr}  ${timeStr} ")"
+    diff="$(expr ${width} - length "${hostStr}${pathStr}${signalStr}  ${timeStr} ")"
     if [[ $diff -gt 0 ]]; then
         padding=$(printf %${diff}s)
     else
@@ -88,7 +97,7 @@ getStatus()
 
     tput dim
     tput smul
-    printf "\n%s" "${hostStr}${shLevel} at ${myPath}${gitBranch}${signalStr}${padding}  ${timeStr} "
+    printf "\n%s" "${hostStr}${pathStr}${signalStr}${padding}  ${timeStr} "
     tput sgr0
     printf "\n"
 }

@@ -8,8 +8,8 @@ endif
 let g:EasyMotion_do_mapping = 0
 if exists('g:EasyMotion_loaded')
     let g:EasyMotion_smartcase = 1
-    map  f, <Plug>(easymotion-bd-f)
-    nmap f, <Plug>(easymotion-overwin-f)
+    map  f/ <Plug>(easymotion-bd-f)
+    nmap f/ <Plug>(easymotion-overwin-f)
     map  /  <Plug>(easymotion-sn)
     omap /  <Plug>(easymotion-tn)
 endif
@@ -54,13 +54,13 @@ if exists('g:loaded_fzf')
 
     if has('nvim')
         "let $FZF_DEFAULT_COMMAND =  "find * -path '*/\.*' -prune -o -path 'node_modules/**' -prune -o -path 'target/**' -prune -o -path 'dist/**' -prune -o  -type f -print -o -type l -print 2> /dev/null"
-        let $FZF_DEFAULT_OPTS=' --color=dark --margin=1,2 --layout=reverse'
+        let $FZF_DEFAULT_OPTS=' --color=dark --margin=1,2 --layout=reverse --preview-window=hidden'
         let g:fzf_layout = { 'window': 'call FloatingFZF()' }
         function! FloatingFZF()
             let buf = nvim_create_buf(v:false, v:true)
             call setbufvar(buf, '&signcolumn', 'no')
             let height = (&lines > 40)? float2nr(24): float2nr(&lines * 0.6)
-            let width = (&columns > 150)? float2nr(120): float2nr(&columns * 0.8)
+            let width = (&columns > 100)? float2nr(80): float2nr(&columns * 0.8)
             let vertical = float2nr((&lines - height) / 4)
             let horizontal = float2nr((&columns - width) / 2)
             let opts = {
