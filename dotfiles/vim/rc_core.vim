@@ -182,6 +182,9 @@ set nocompatible
         nnoremap R gR
        "noremap : :
 
+        nnoremap <tab> <esc>
+        vnoremap <tab> <esc>gV
+        onoremap <tab> <esc>
         inoremap <tab> <esc>`^
         inoremap <s-tab> <tab>
         inoremap <esc> <esc>`^
