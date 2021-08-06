@@ -182,8 +182,8 @@ set nocompatible
         nnoremap R gR
        "noremap : :
 
-        inoremap <s-tab> <cr>
-        inoremap <cr> <esc>`^
+        inoremap <tab> <esc>`^
+        inoremap <s-tab> <tab>
         inoremap <esc> <esc>`^
 
 
@@ -315,19 +315,18 @@ set nocompatible
             nnoremap fp ]p
             nnoremap r gr
             vnoremap r gr
-           "nnoremap " "
-            nnoremap s" q
-            nnoremap ' @
-            nnoremap '' @@
-            nnoremap ~ qq<esc>
-            nnoremap ` @q
+            nnoremap X "
+            nnoremap XX ""
+            nnoremap Z q
+            nnoremap z @
+            nnoremap zz @@
 
         "" history
            "nnoremap u u
             nnoremap U <c-r>
             nnoremap fu g-
             nnoremap FU g+
-            nnoremap z .
+            nnoremap x .
 
         "" auto completion
            "inoremap <c-p> <c-p>
@@ -342,31 +341,31 @@ set nocompatible
         "" indentation
            "inoremap <c-d> <c-d>
            "inoremap <c-t> <c-t>
-            nnoremap x< <<
-            nnoremap x> >>
-            nnoremap x= ==
-            vnoremap x< <gv
-            vnoremap x> >gv
-            vnoremap x= =gv
+            nnoremap '< <<
+            nnoremap '> >>
+            nnoremap '= ==
+            vnoremap '< <gv
+            vnoremap '> >gv
+            vnoremap '= =gv
 
         "" case
-            nnoremap xc ~
-            vnoremap xc ~
-            nnoremap xu gU
-            nnoremap xu U
-            nnoremap xl gu
-            nnoremap xl u
+            nnoremap 'c ~
+            vnoremap 'c ~
+            nnoremap 'u gU
+            nnoremap 'u U
+            nnoremap 'l gu
+            nnoremap 'l u
 
         "" value
-            nnoremap x+ <c-a>
-            vnoremap x+ <c-a>
-            nnoremap x- <c-x>
-            vnoremap x- <c-x>
+            nnoremap '+ <c-a>
+            vnoremap '+ <c-a>
+            nnoremap '- <c-x>
+            vnoremap '- <c-x>
 
-        nnoremap xj J
-        vnoremap xj J
-        nnoremap XJ gJ
-        vnoremap XJ gJ
+        nnoremap 'j J
+        vnoremap 'j J
+        nnoremap 'J gJ
+        vnoremap 'J gJ
        "inoremap <c-v> <c-v>
        "inoremap <c-o> <c-o>
        "inoremap <c-r> <c-r>
@@ -477,7 +476,7 @@ set nocompatible
             nnoremap qa  :<c-u>qa<cr>
            "nnoremap sqf :<c-u>wq<cr>
            "nnoremap sqa :<c-u>wqa<cr>
-            nnoremap fqf :<c-u>bd!<cr>
+            nnoremap fq  :<c-u>bd!<cr>
 
         "" go to another window
             nnoremap gk <c-w>k
@@ -550,15 +549,17 @@ set nocompatible
             nnoremap SK K
             nnoremap Sm :<c-u>jumps<cr>
             nnoremap Sq :<c-u>cl<cr>
-            nnoremap Ss :<c-u>echom synIDattr(synIDtrans(synID(a:line, a:col, 1)), "name")<cr>
+            nnoremap Ss :<c-u>echom synIDattr(synIDtrans(synID(line("."), col("."), 1)), "name")<cr>
             nnoremap Su :<c-u>undol<cr>
             nnoremap S: :<c-u>history:<cr>
            "nnoremap S: :<c-u>History:<cr>
-            nnoremap S" :<c-u>reg<cr>
+            nnoremap SX :<c-u>reg<cr>
             nnoremap S/ :<c-u>history/<cr>
            "nnoremap S/ :<c-u>History/<cr>
 
         nnoremap ;n :<c-u>normal! 
+        nnoremap ;h :<c-u>help 
+        nnoremap ;m :<c-u>map 
 
 
     "" for navigation keys
@@ -577,7 +578,7 @@ set nocompatible
 
     " }}}
 
-    let g:ranger_command_override = 'ranger --cmd="chain map <esc> quit; set draw_borders outline"'
+    let g:ranger_command_override = 'ranger --cmd="chain map <esc> quit; set draw_borders outline; set column_ratios 0,5,3"'
 
     set autowrite               " writes file when make
     set hidden                  " keep undo history when switching buffers

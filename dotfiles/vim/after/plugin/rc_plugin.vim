@@ -60,7 +60,7 @@ if exists('g:loaded_fzf')
             let buf = nvim_create_buf(v:false, v:true)
             call setbufvar(buf, '&signcolumn', 'no')
             let height = (&lines > 40)? float2nr(24): float2nr(&lines * 0.6)
-            let width = (&columns > 100)? float2nr(80): float2nr(&columns * 0.8)
+            let width = (&columns > 150)? float2nr(120): float2nr(&columns * 0.8)
             let vertical = float2nr((&lines - height) / 4)
             let horizontal = float2nr((&columns - width) / 2)
             let opts = {
