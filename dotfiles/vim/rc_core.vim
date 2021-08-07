@@ -289,7 +289,7 @@ set nocompatible
 
         "" to mark
             noremap mb `
-            noremap sb m
+            noremap ab m
            "nnoremap mb :<c-u>Marks<cr>
 
         nnoremap mi `^
